@@ -54,16 +54,15 @@
       opacity: 0.35;
     }
 
-    .shell {
-      min-height: 100vh;
-      min-height: 100svh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px 16px calc(28px + env(safe-area-inset-bottom));
-      position: relative;
-      z-index: 1;
-    }
+.shell {
+  min-height: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0 16px 0;
+  position: relative;
+  z-index: 1;
+}
 
     .card {
       width: min(760px, 100%);
