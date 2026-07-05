@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light" />
+  <title>Before You Schedule Your Appointment | Lareau CPAs</title>
+  <style>
+    :root {
+      --bg: #eef2f7;
+      --bg-2: #dde6f1;
+      --panel: rgba(255, 255, 255, 0.9);
+      --panel-solid: #ffffff;
+      --text: #0b1f39;
+      --muted: #516277;
+      --brand: #0b1f3d;
+      --brand-2: #173d6b;
+      --accent: #d4a85f;
+      --danger: #8d3b1f;
+      --line: rgba(11, 31, 57, 0.12);
+      --shadow: 0 18px 50px rgba(7, 17, 33, 0.16);
+      --radius: 28px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Aptos", "Segoe UI", Tahoma, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(23, 61, 107, 0.14), transparent 28%),
+        radial-gradient(circle at top right, rgba(212, 168, 95, 0.12), transparent 30%),
+        linear-gradient(180deg, #f7f9fc 0%, #e6eef7 100%);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(11, 31, 57, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(11, 31, 57, 0.04) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), transparent 95%);
+      opacity: 0.35;
+    }
+
+    .shell {
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 16px calc(28px + env(safe-area-inset-bottom));
+      position: relative;
+      z-index: 1;
+    }
+
+    .card {
+      width: min(760px, 100%);
+      border-radius: calc(var(--radius) + 4px);
+      overflow: hidden;
+      background: var(--panel);
+      border: 1px solid rgba(24, 49, 59, 0.10);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 26px 24px 22px;
+      background:
+        radial-gradient(circle at top right, rgba(255, 255, 255, 0.14), transparent 32%),
+        linear-gradient(135deg, #08162c 0%, #102a4d 55%, #173d6b 100%);
+      border-bottom: 1px solid var(--line);
+      color: white;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: -42px;
+      right: -28px;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0));
+      pointer-events: none;
+    }
+
+    .hero-top {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .brand-lockup {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-logo-shell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border-radius: 0;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+    }
+
+    .brand-logo {
+      display: block;
+      width: min(360px, 66vw);
+      max-width: 100%;
+      height: auto;
+    }
+
+    .hero-badge {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: rgba(255, 255, 255, 0.94);
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .hero-badge::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #d4a85f, #f1d7a1);
+      box-shadow: 0 0 0 4px rgba(212, 168, 95, 0.14);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.76);
+      border: 1px solid rgba(11, 31, 57, 0.10);
+      color: var(--brand-2);
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--brand), var(--accent));
+      box-shadow: 0 0 0 4px rgba(23, 61, 107, 0.12);
+    }
+
+    h1,
+    h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      letter-spacing: -0.02em;
+      line-height: 1.04;
+    }
+
+    h1 {
+      margin-top: 14px;
+      font-size: clamp(1.85rem, 5vw, 3rem);
+    }
+
+    .hero h1 {
+      color: white;
+    }
+
+    .hero p {
+      margin: 12px 0 0;
+      max-width: 64ch;
+      color: rgba(255, 255, 255, 0.82);
+      line-height: 1.58;
+      font-size: 1rem;
+    }
+
+    .body {
+      padding: 22px 24px 24px;
+    }
+
+    .screen {
+      display: none;
+    }
+
+    .screen.is-active {
+      display: block;
+    }
+
+    .question-title {
+      margin: 0 0 10px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.35rem, 3.8vw, 2rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .question-copy {
+      margin: 0 0 18px;
+      color: var(--text);
+      line-height: 1.58;
+      font-size: 1rem;
+    }
+
+    .intro-card {
+      margin: 0 0 18px;
+      padding: 18px 18px 8px;
+      border-radius: 22px;
+      border: 1px solid rgba(11, 31, 57, 0.10);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(240, 245, 251, 0.96));
+      box-shadow: 0 16px 28px rgba(7, 17, 33, 0.08);
+    }
+
+    .notice {
+      margin: 0 0 18px;
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(23, 61, 107, 0.16);
+      background: rgba(23, 61, 107, 0.09);
+      color: #17304f;
+    }
+
+    .notice ul {
+      margin: 10px 0 0;
+      padding-left: 18px;
+    }
+
+    .notice li + li {
+      margin-top: 6px;
+    }
+
+    .options {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .options.compact {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .option {
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: var(--panel-solid);
+      color: var(--text);
+      text-align: left;
+      cursor: pointer;
+      transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease, background 160ms ease;
+      min-height: 72px;
+    }
+
+    .option:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 22px rgba(11, 31, 57, 0.09);
+    }
+
+    .option.is-selected {
+      border-color: rgba(23, 61, 107, 0.42);
+      box-shadow: 0 0 0 3px rgba(23, 61, 107, 0.12);
+      background: rgba(255, 255, 255, 0.98);
+    }
+
+    .option:focus-visible,
+    .nav:focus-visible,
+    .link-btn:focus-visible {
+      outline: 3px solid rgba(23, 61, 107, 0.24);
+      outline-offset: 2px;
+    }
+
+    .mark {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      border: 2px solid rgba(11, 31, 57, 0.22);
+      display: grid;
+      place-items: center;
+      flex: none;
+      margin-top: 1px;
+      color: white;
+      font-size: 0.82rem;
+      line-height: 1;
+      transition: background 160ms ease, border-color 160ms ease;
+    }
+
+    .option.is-selected .mark {
+      background: var(--brand);
+      border-color: var(--brand);
+    }
+
+    .option-copy strong {
+      display: block;
+      font-size: 1rem;
+      line-height: 1.3;
+    }
+
+    .option-copy span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 0.95rem;
+    }
+
+    .footer-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+
+    .nav,
+    .link-btn {
+      min-height: 52px;
+      border-radius: 16px;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .nav {
+      flex: 1 1 160px;
+      border: 1px solid var(--line);
+      background: #ffffff;
+      color: var(--text);
+      cursor: pointer;
+      padding: 0 18px;
+    }
+
+    .nav.primary {
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 14px 24px rgba(23, 61, 107, 0.20);
+    }
+
+    .nav:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
+    }
+
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      padding: 0 18px;
+      border: 1px solid transparent;
+      min-width: 180px;
+    }
+
+    .link-btn.scheduler {
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      color: white;
+      box-shadow: 0 14px 24px rgba(23, 61, 107, 0.20);
+    }
+
+    .link-btn.contact {
+      background: white;
+      color: var(--danger);
+      border-color: rgba(159, 61, 20, 0.20);
+    }
+
+    .result-card {
+      border-radius: 22px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.94);
+    }
+
+    .result-card.success {
+      border-color: rgba(23, 61, 107, 0.18);
+      background: linear-gradient(180deg, rgba(23, 61, 107, 0.07), rgba(255, 255, 255, 0.96));
+    }
+
+    .result-card.stop {
+      border-color: rgba(141, 59, 31, 0.20);
+      background: linear-gradient(180deg, rgba(141, 59, 31, 0.07), rgba(255, 255, 255, 0.96));
+    }
+
+    .result-card h2 {
+      font-size: clamp(1.35rem, 3.8vw, 1.9rem);
+      margin-bottom: 10px;
+    }
+
+    .result-card p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      line-height: 1.58;
+    }
+
+    .result-card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--text);
+      line-height: 1.58;
+    }
+
+    .result-card li + li {
+      margin-top: 7px;
+    }
+
+    .result-card .result-note {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(23, 61, 107, 0.08);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    .lookup-field {
+      margin: 0 0 18px;
+      padding: 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(11, 31, 57, 0.10);
+      background: rgba(255, 255, 255, 0.95);
+    }
+
+    .lookup-label {
+      display: block;
+      margin: 0 0 10px;
+      color: var(--brand);
+      font-size: 0.96rem;
+      font-weight: 700;
+    }
+
+    .lookup-input {
+      width: 100%;
+      min-height: 52px;
+      border-radius: 16px;
+      border: 1px solid rgba(11, 31, 57, 0.18);
+      background: white;
+      color: var(--text);
+      padding: 0 16px;
+      font: inherit;
+      font-size: 1rem;
+    }
+
+    .lookup-input:focus {
+      outline: none;
+      border-color: var(--brand-2);
+      box-shadow: 0 0 0 4px rgba(23, 61, 107, 0.14);
+    }
+
+    .lookup-help {
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 0.93rem;
+    }
+
+    .lookup-feedback {
+      margin: 0 0 14px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(141, 59, 31, 0.18);
+      background: rgba(141, 59, 31, 0.08);
+      color: #6d2d18;
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+
+    .smallprint {
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 640px) {
+      .hero,
+      .body {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .hero-top {
+        align-items: flex-start;
+      }
+
+      .brand-logo {
+        width: min(320px, 76vw);
+      }
+
+      .card {
+        border-radius: 24px;
+      }
+
+      .footer-actions {
+        flex-direction: column;
+      }
+
+      .nav,
+      .link-btn {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .options.compact {
+        grid-template-columns: 1fr;
+      }
+
+      .option {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <main class="card" role="main">
+      <header class="hero">
+        <div class="hero-top">
+          <div class="brand-lockup" aria-label="Lareau and Lareau CPAs">
+            <div class="brand-logo-shell">
+              <img src="lareau-logo.png" alt="Lareau &amp; Lareau CPAs" class="brand-logo" />
+            </div>
+          </div>
+        </div>
+        <h1>Before You Schedule Your Appointment</h1>
+      </header>
+
+      <section class="body">
+        <div id="screen" class="screen is-active" aria-live="polite"></div>
+
+        <p class="smallprint">
+          Use Back and Continue to move through the questionnaire.
+        </p>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const schedulerUrl = "https://www.lareaucpas.com/resources/scheduler";
+    const contactUrl = "mailto:victoria@lareaucpas.com";
+    const providerProfiles = {
+      julie: {
+        displayName: "Julie Ramos",
+        firstName: "Julie",
+        aliases: ["julie", "julie ramos", "ramos"],
+        returningUrl: "https://calendly.com/julieramos/returning-client-consultation",
+        newUrl: "https://calendly.com/julieramos/new-client-consultation"
+      },
+      colin: {
+        displayName: "Colin Cunningham",
+        firstName: "Colin",
+        aliases: ["colin", "colin cunningham", "cunningham"],
+        returningUrl: "https://calendly.com/colin-lareaucpas/returning-client-consultation",
+        newUrl: "https://calendly.com/colin-lareaucpas/new-client-consultation"
+      },
+      dawn: {
+        displayName: "Dawn Gardner",
+        firstName: "Dawn",
+        aliases: ["dawn", "dawn gardner", "gardner"],
+        returningUrl: "https://calendly.com/dawn-lareaucpas/returning-client-consultation",
+        newUrl: "https://calendly.com/dawn-lareaucpas/new-client-consultation"
+      },
+      jeff: {
+        displayName: "Jeff Lareau",
+        firstName: "Jeff",
+        aliases: ["jeff", "jeff lareau", "lareau"],
+        returningUrl: "https://calendly.com/yourcpajeff/returning-client-consultation",
+        newUrl: "https://calendly.com/yourcpajeff/new-client-consultation"
+      },
+      steve: {
+        displayName: "Steve Lareau",
+        firstName: "Steve",
+        aliases: ["steve", "steve lareau"]
+      }
+    };
+
+    const providerOrder = ["julie", "colin", "dawn", "jeff"];
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function normalizeLookup(value) {
+      return String(value || "")
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function resolveProviderKey(value) {
+      const normalized = normalizeLookup(value);
+      if (!normalized) return null;
+      if (normalized.includes("steve")) return "steve";
+
+      for (const key of providerOrder) {
+        const profile = providerProfiles[key];
+        if (profile.aliases.some((alias) => normalized === alias || normalized.includes(alias))) {
+          return key;
+        }
+      }
+
+      return null;
+    }
+
+    function buildScheduleResult({ title, copy, label, href }) {
+      return {
+        kind: "result",
+        tone: "success",
+        title,
+        copy,
+        action: {
+          label,
+          href,
+          kind: "scheduler"
+        }
+      };
+    }
+
+    function buildContactResult({ title, copy, label }) {
+      return {
+        kind: "result",
+        tone: "stop",
+        title,
+        copy,
+        action: {
+          label,
+          href: contactUrl,
+          kind: "contact"
+        }
+      };
+    }
+
+    function createProviderScheduleSteps(clientType) {
+      const prefix = clientType === "returning" ? "returning" : "new_client";
+      const resultCopy = clientType === "returning"
+        ? (profile) => `Perfect. We're excited to see you again and get you scheduled with ${profile.firstName}.`
+        : (profile) => `Great choice. We'll send you to ${profile.firstName} for your new client consultation.`;
+      const actionLabel = (profile) => {
+        const calendarType = clientType === "returning" ? "returning client calendar" : "new client calendar";
+        return `Go To ${profile.firstName}'s ${calendarType}`;
+      };
+
+      return providerOrder.reduce((accumulator, key) => {
+        const profile = providerProfiles[key];
+        accumulator[`${prefix}_${key}_schedule`] = buildScheduleResult({
+          title: `You're on ${profile.firstName}'s calendar`,
+          copy: [resultCopy(profile)],
+          label: actionLabel(profile),
+          href: clientType === "returning" ? profile.returningUrl : profile.newUrl
+        });
+        return accumulator;
+      }, {});
+    }
+
+    const steps = {
+      start: {
+        kind: "intro",
+        title: "Before You Schedule Your Appointment",
+        copy: [],
+        next: "returning_client"
+      },
+      returning_client: {
+        kind: "question",
+        title: "Are you a current or potential new client of Lareau & Lareau CPAs?",
+        copy: "",
+        options: [
+          { value: "yes", label: "I'm back! (I am a returning client)" },
+          { value: "no", label: "I'm interested in joining your client family" }
+        ],
+        next: (answer) => (answer === "yes" ? "returning_provider" : "fees")
+      },
+      returning_provider: {
+        kind: "question",
+        title: "Who would you like to meet with?",
+        copy: "Type the person's name only if you know it, and we will route you to the right calendar.",
+        lookup: {
+          label: "Type the person's name",
+          placeholder: "Type the first or full name",
+          help: "Only type a name if you know it."
+        },
+        options: [],
+        resolveLookup: resolveProviderKey,
+        invalidMessage: "Please type the name of the person you know.",
+        next: (providerKey) => {
+          if (providerKey === "steve") return "call_steve";
+          return `returning_${providerKey}_schedule`;
+        }
+      },
+      ...createProviderScheduleSteps("returning"),
+      call_steve: buildContactResult({
+        title: "Please call the office",
+        copy: [
+          "To arrange to meet with Steve, please call the office so you can speak with him directly."
+        ],
+        label: "Contact the office"
+      }),
+      fees: {
+        kind: "question",
+        title: "Let's Talk Pricing",
+        copy: [
+          "Before we move forward, we want to make sure we're on the same page about our pricing and billing.",
+          "Our services start at:",
+          "Personal income tax returns: Starting at $500",
+          "Corporate & partnership tax returns: Starting at $1,500",
+          "Payment is due before we e-file your return",
+          "Need more than tax preparation? We're happy to help! Services such as tax planning, consulting, IRS or state representation, tax notice resolution, and other advisory work are billed separately from tax preparation."
+        ],
+        options: [
+          { value: "yes", label: "Yes, continue", detail: "Move on to the next step." },
+          { value: "no", label: "No, your pricing does not fit for us" }
+        ],
+        next: (answer) => (answer === "yes" ? "back_taxes" : "contact_fees")
+      },
+      contact_fees: buildContactResult({
+        title: "We may not be the best fit",
+        copy: [
+          "We're sorry, but it seems we may not be the best fit for you.",
+          "Please call us if you would like a referral to another tax practice."
+        ],
+        label: "Contact the office for a referral"
+      }),
+      back_taxes: {
+        kind: "question",
+        title: "Need to Catch Up on Tax Returns?",
+        copy: "",
+        options: [
+          { value: "current", label: "Nope! I am filing the current year only" },
+          { value: "one_or_two", label: "Yes, I need the current year plus one or two prior years" },
+          { value: "more_than_two", label: "Yes, I am behind by more than two years" }
+        ],
+        next: (answer) => (answer === "more_than_two" ? "referral_back_taxes" : "primary_need")
+      },
+      referral_back_taxes: buildContactResult({
+        title: "More than two years behind",
+        copy: [
+          "Thank you for your interest in working with us.",
+          "At this time, we're generally not the best fit for new clients who are behind by more than two tax years. These situations often require a different level of catch-up work, cleanup, and representation than our standard new client process is designed to handle.",
+          "Please call us if you would like a referral to another tax practice."
+        ],
+        label: "Contact the office for a referral"
+      }),
+      primary_need: {
+        kind: "question",
+        title: "What is your primary need?",
+        copy: "",
+        options: [
+          { value: "individual", label: "Individual tax preparation and planning", detail: "This includes sole proprietors and single-member LLCs that haven't elected S corporation tax treatment." },
+          { value: "scorp_partnership", label: "Tax preparation and planning for an S-corp or partnership", detail: "This includes businesses that have made the leap to S corporation status, as well as legal partnerships." },
+          { value: "estate_trust", label: "Tax preparation for an estate or trust" }
+        ],
+        next: (answer) => {
+          if (answer === "individual") return "individual_activity";
+          if (answer === "scorp_partnership") return "scorp_records";
+          return "final_ack";
+        }
+      },
+      individual_activity: {
+        kind: "question",
+        title: "Do you have rental property income or self-employment activity?",
+        copy: "If you do not have rental property income or self-employment activity, choose No.",
+        options: [
+          { value: "no", label: "No", detail: "Continue to the final acknowledgment." },
+          { value: "yes", label: "Yes", detail: "Continue to the records question." }
+        ],
+        next: (answer) => (answer === "yes" ? "individual_records" : "final_ack")
+      },
+      individual_records: {
+        kind: "question",
+        title: "We Need Totals, Not Transactions!",
+        copy: [
+          "For rental properties and small businesses, you will need to provide your income and expense totals using our organizer, worksheet, or an accurate Profit & Loss statement.",
+          "Receipts, statements, check registers, and mystery spreadsheets make great backup, but we prepare returns from totals, not transactions.",
+          "Our organizers use the tax categories we need (and often include last year's numbers), making tax time faster, easier, and more accurate. This means you are agreeing to provide the information in the format we give you, such as our online organizer or worksheet."
+        ],
+        options: [
+          { value: "yes", label: "Yes", detail: "I will provide the totals in the format you give me." },
+          { value: "no", label: "No", detail: "I want to provide information in my preferred format." }
+        ],
+        next: (answer) => (answer === "yes" ? "final_ack" : "contact_individual_records")
+      },
+      contact_individual_records: buildContactResult({
+        title: "We may not be the best fit",
+        copy: [
+          "We're sorry, but it seems we may not be the best fit for you.",
+          "Before we can prepare a tax return with rental, self-employment, or similar income and expense activity, the information needs to be organized into appropriate tax categories.",
+          "We do not prepare returns directly from receipts, bank statements, credit card statements, check registers, or spreadsheets.",
+          "Please call the office if you would like a referral to another tax practice."
+        ],
+        label: "Contact the office for a referral"
+      }),
+      scorp_records: {
+        kind: "question",
+        title: "Are your books ready?",
+        copy: [
+          "Before we schedule your appointment, your books must be complete and accurate, including a current Profit & Loss and Balance Sheet.",
+          "Bookkeeping isn't our superpower - we focus on taxes! We don't provide bookkeeping services, so if your books need some help first, we're happy to refer you to a great bookkeeper."
+        ],
+        options: [
+          { value: "yes", label: "Yes, the financial statements are accurate and ready", detail: "Continue to the final acknowledgment." },
+          { value: "no", label: "No, I need bookkeeping or cleanup first.", detail: "Contact us if you need a referral for a bookkeeping partner." }
+        ],
+        next: (answer) => (answer === "yes" ? "final_ack" : "contact_scorp_records")
+      },
+      contact_scorp_records: buildContactResult({
+        title: "Let's Get Your Books in Shape First!",
+        copy: [
+          "We're sorry, but it seems we may not be the best fit for you.",
+          "Before scheduling a tax preparation appointment for an S-corporation or partnership, accurate financial statements are required. If bookkeeping or cleanup is needed, that work should be completed before scheduling. Need a bookkeeper? We'd be happy to connect you with one of our trusted bookkeeping partners!"
+        ],
+        label: "Contact us about bookkeeping"
+      }),
+      final_ack: {
+        kind: "question",
+        title: "Almost There!",
+        copy: [
+          "Before we schedule, please make sure you're on board:",
+          "Multiple-year returns and catch-up work may require upfront payment and additional fees.",
+          "Payment to us is due before e-filing.",
+          "IRS/state notices, representation, and other tax resolution services are billed hourly.",
+          "We always keep an eye out for tax-saving opportunities while preparing your return. Need a deeper dive? Tax planning, business strategy, and consulting are available separately.",
+          "We aim to respond within two business days and appreciate timely responses from you, too!"
+        ],
+        options: [
+          { value: "yes", label: "Yes, Let's Get This on the Calendar!" },
+          { value: "no", label: "No Thanks - We're Probably Not the Right Fit" }
+        ],
+        next: (answer) => {
+          if (answer !== "yes") return "contact_final";
+          if (state.answers.primary_need === "individual") return "new_client_preference";
+          return "new_client_jeff_schedule";
+        }
+      },
+      new_client_preference: {
+        kind: "question",
+        title: "Do you have a preferred tax professional?",
+        copy: "",
+        options: [
+          { value: "yes", label: "Yes - I Already Have Someone in Mind", detail: "Tell us who you would like to work with." },
+          { value: "no", label: "No preference", detail: "Please pair me with the best tax professional for my needs." }
+        ],
+        next: (answer) => {
+          if (answer === "yes") return "new_client_provider";
+          return "new_client_meeting_type";
+        }
+      },
+      new_client_provider: {
+        kind: "question",
+        title: "Who would you like to work with?",
+        copy: "Type the person's name only if you know it, and we will route you to the right calendar.",
+        lookup: {
+          label: "Type the person's name",
+          placeholder: "Type the first or full name",
+          help: "Only type a name if you know it."
+        },
+        options: [],
+        resolveLookup: resolveProviderKey,
+        invalidMessage: "Please type the name of the person you know.",
+        next: (providerKey) => {
+          if (providerKey === "steve") return "call_steve";
+          return `new_client_${providerKey}_schedule`;
+        }
+      },
+      ...createProviderScheduleSteps("new"),
+      new_client_meeting_type: {
+        kind: "question",
+        title: "How would you like to meet?",
+        copy: "",
+        options: [
+          { value: "in_person", label: "In person meeting", detail: "Show me the in-person calendar." },
+          { value: "zoom", label: "Zoom meeting", detail: "Show me the Zoom calendar." }
+        ],
+        next: (answer) => (answer === "in_person" ? "new_client_round_robin_in_person" : "new_client_round_robin_zoom")
+      },
+      new_client_round_robin_in_person: buildScheduleResult({
+        title: "You're all set for an in-person meeting",
+        copy: [
+          "Great. We'll send you to the in-person scheduling page."
+        ],
+        label: "Go to in person meeting calendar",
+        href: "https://calendly.com/d/ctfx-qgn-z7g/new-individual-tax-in-person"
+      }),
+      new_client_round_robin_zoom: buildScheduleResult({
+        title: "You're all set for a Zoom meeting",
+        copy: [
+          "Great. We'll send you to the Zoom scheduling page."
+        ],
+        label: "Go to zoom meeting calendar",
+        href: "https://calendly.com/d/cwmm-82s-8h7/new-individual-tax-zoom"
+      }),
+      new_client_jeff_schedule: buildScheduleResult({
+        title: "We'll take you to Jeff's calendar",
+        copy: [
+          "Great. Based on your answers, Jeff is the right person for this appointment."
+        ],
+        label: "Go To Jeff's calendar",
+        href: providerProfiles.jeff.newUrl
+      }),
+      contact_final: buildContactResult({
+        title: "We may not be the best fit",
+        copy: [
+          "We're sorry, but it seems we may not be the best fit for you.",
+          "Please call the office if you would like a referral to another CPA firm."
+        ],
+        label: "Contact the office for a referral"
+      })
+    };
+
+    const state = {
+      current: "start",
+      history: [],
+      answers: {},
+      selected: null,
+      feedback: ""
+    };
+
+    const screen = document.getElementById("screen");
+
+    function currentStep() {
+      return steps[state.current];
+    }
+
+    function setStep(stepId) {
+      if (state.current !== stepId) {
+        state.history.push(state.current);
+      }
+      state.current = stepId;
+      state.feedback = "";
+      state.selected = steps[stepId].kind === "question" ? (state.answers[stepId] ?? null) : null;
+      render();
+    }
+
+    function goBack() {
+      if (!state.history.length) return;
+      state.current = state.history.pop();
+      state.feedback = "";
+      state.selected = steps[state.current].kind === "question" ? (state.answers[state.current] ?? null) : null;
+      render();
+    }
+
+    function continueFlow() {
+      const step = currentStep();
+      if (step.kind === "intro") {
+        setStep(step.next);
+        return;
+      }
+
+      if (step.kind !== "question" || !state.selected) return;
+
+      if (step.lookup) {
+        const rawValue = String(state.answers[state.current] ?? "").trim();
+        const providerKey = step.resolveLookup ? step.resolveLookup(rawValue) : null;
+        if (!providerKey) {
+          state.feedback = step.invalidMessage || "Please type the name of the person you know.";
+          render();
+          return;
+        }
+
+        state.feedback = "";
+        state.answers[state.current] = rawValue;
+        setStep(step.next(providerKey));
+        return;
+      }
+
+      state.answers[state.current] = state.selected;
+      setStep(step.next(state.selected));
+    }
+
+    function renderParagraphs(content, className = "") {
+      if (!content) return "";
+      const paragraphs = Array.isArray(content) ? content : [content];
+      return paragraphs
+        .map((paragraph) => {
+          const classAttr = className ? ` class="${className}"` : "";
+          return `<p${classAttr}>${escapeHtml(paragraph)}</p>`;
+        })
+        .join("");
+    }
+
+    function renderIntro(step) {
+      return `
+        <section class="screen is-active" data-screen="intro">
+          <h2 class="sr-only" tabindex="-1">${escapeHtml(step.title)}</h2>
+          <div class="intro-card">
+            ${renderParagraphs(step.copy, "question-copy")}
+          </div>
+          <div class="footer-actions">
+            <button type="button" class="nav primary" data-continue>Continue</button>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderQuestion(step) {
+      const options = Array.isArray(step.options) ? step.options : [];
+      const optionsMarkup = options.length
+        ? options.map((option) => {
+            const selected = state.selected === option.value ? " is-selected" : "";
+            const check = state.selected === option.value ? "&#10003;" : "";
+            const detail = option.detail ? `<span>${escapeHtml(option.detail)}</span>` : "";
+            return `
+          <button type="button" class="option${selected}" data-option="${escapeHtml(option.value)}" aria-pressed="${state.selected === option.value}">
+            <span class="mark" aria-hidden="true">${check}</span>
+            <span class="option-copy">
+              <strong>${escapeHtml(option.label)}</strong>
+              ${detail}
+            </span>
+          </button>
+        `;
+          }).join("")
+        : "";
+
+      const canGoBack = state.history.length > 0;
+      const notice = step.notice
+        ? `
+          <div class="notice">
+            <strong>Important</strong>
+            <ul>
+              ${step.notice.lines.map((line) => `<li>${escapeHtml(line)}</li>`).join("")}
+            </ul>
+          </div>
+        `
+        : "";
+
+      const lookup = step.lookup
+        ? `
+          <div class="lookup-field">
+            <label class="lookup-label" for="lookup-${state.current}">${escapeHtml(step.lookup.label)}</label>
+            <input
+              id="lookup-${state.current}"
+              class="lookup-input"
+              type="text"
+              inputmode="text"
+              autocomplete="name"
+              placeholder="${escapeHtml(step.lookup.placeholder)}"
+              value="${escapeHtml(state.answers[state.current] ?? "")}"
+              data-lookup-input
+            />
+            <p class="lookup-help">${escapeHtml(step.lookup.help)}</p>
+          </div>
+        `
+        : "";
+
+      const feedback = state.feedback
+        ? `<div class="lookup-feedback">${escapeHtml(state.feedback)}</div>`
+        : "";
+
+      const optionsClass = step.lookup ? "options compact" : "options";
+      const optionsBlock = optionsMarkup
+        ? `<div class="${optionsClass}" role="group" aria-label="${escapeHtml(step.title)}">${optionsMarkup}</div>`
+        : "";
+
+      return `
+        <section class="screen is-active" data-screen="question">
+          <h2 class="question-title" tabindex="-1">${escapeHtml(step.title)}</h2>
+          ${renderParagraphs(step.copy, "question-copy")}
+          ${notice}
+          ${lookup}
+          ${feedback}
+          ${optionsBlock}
+          <div class="footer-actions">
+            <button type="button" class="nav" data-back ${canGoBack ? "" : "disabled"}>Back</button>
+            <button type="button" class="nav primary" data-continue ${state.selected && String(state.selected).trim() ? "" : "disabled"}>Continue</button>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderResult(step) {
+      const toneClass = step.tone === "success" ? "success" : "stop";
+      const actionClass = step.action.kind === "scheduler" ? "scheduler" : "contact";
+      const canGoBack = state.history.length > 0;
+      const actionTarget = step.action.kind === "scheduler"
+        ? ' target="_blank" rel="noopener noreferrer"'
+        : "";
+
+      return `
+        <section class="screen is-active" data-screen="result">
+          <div class="result-card ${toneClass}">
+            <h2 tabindex="-1">${escapeHtml(step.title)}</h2>
+            ${renderParagraphs(step.copy)}
+            <div class="footer-actions">
+              <button type="button" class="nav" data-back ${canGoBack ? "" : "disabled"}>Back</button>
+              <a class="link-btn ${actionClass}" href="${escapeHtml(step.action.href)}"${actionTarget}>${escapeHtml(step.action.label)}</a>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function render() {
+      const step = currentStep();
+      screen.innerHTML = step.kind === "intro" ? renderIntro(step) : step.kind === "question" ? renderQuestion(step) : renderResult(step);
+
+      const focusTarget = screen.querySelector("h2");
+      if (focusTarget) {
+        requestAnimationFrame(() => focusTarget.focus({ preventScroll: true }));
+      }
+    }
+
+    screen.addEventListener("click", (event) => {
+      const option = event.target.closest("[data-option]");
+      if (option) {
+        state.selected = option.dataset.option;
+        state.answers[state.current] = state.selected;
+        state.feedback = "";
+        render();
+        return;
+      }
+
+      const back = event.target.closest("[data-back]");
+      if (back) {
+        goBack();
+        return;
+      }
+
+      const cont = event.target.closest("[data-continue]");
+      if (cont) {
+        continueFlow();
+      }
+    });
+
+    screen.addEventListener("input", (event) => {
+      const lookupInput = event.target.closest("[data-lookup-input]");
+      if (!lookupInput) return;
+      state.answers[state.current] = lookupInput.value;
+      state.selected = lookupInput.value.trim();
+      state.feedback = "";
+      const continueButton = screen.querySelector("[data-continue]");
+      if (continueButton) {
+        continueButton.disabled = !state.selected;
+      }
+    });
+
+    screen.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter") return;
+      if (!event.target.matches("[data-lookup-input]")) return;
+      event.preventDefault();
+      continueFlow();
+    });
+
+    render();
+  </script>
+</body>
+</html>
