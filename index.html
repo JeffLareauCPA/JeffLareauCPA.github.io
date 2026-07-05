@@ -701,12 +701,16 @@
     }
 
     const steps = {
-      start: {
-        kind: "intro",
-        title: "Before You Schedule Your Appointment",
-        copy: [],
-        next: "returning_client"
-      },
+start: {
+  kind: "intro",
+  title: "Before You Schedule Your Appointment",
+  copy: [
+    "We are excited to help you get scheduled with the right person at Lareau & Lareau CPAs.",
+    "This short walkthrough will help us determine the best appointment type based on whether you are a returning client, a new client, and the type of tax or accounting help you need.",
+    "Please answer each question as accurately as possible so we can route you to the right next step."
+  ],
+  next: "returning_client"
+},
       returning_client: {
         kind: "question",
         title: "Are you a current or potential new client of Lareau & Lareau CPAs?",
