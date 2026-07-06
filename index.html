@@ -682,7 +682,7 @@
       return providerOrder.reduce((accumulator, key) => {
         const profile = providerProfiles[key];
         accumulator[`${prefix}_${key}_schedule`] = buildScheduleResult({
-          title: `You're on ${profile.firstName}'s calendar`,
+          title: `Let's get you on ${profile.firstName}'s calendar`,
           copy: [resultCopy(profile)],
           label: actionLabel(profile),
           href: clientType === "returning" ? profile.returningUrl : profile.newUrl
